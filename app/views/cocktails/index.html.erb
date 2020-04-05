@@ -1,0 +1,26 @@
+<nav class="navbar navbar-light bg-light">
+  <%= link_to 'Mr Cocktail', root_path, class: "navbar-brand" %>
+  <%= link_to 'Add Cocktail', new_path, class: "navbar-brand" %>
+</nav>
+
+<h1>Cocktails</h1>
+
+<div class="cocktail-card-container">
+  <% @cocktails.each do |cocktail| %>
+    <div class="cocktail-card">
+      <h2><%= link_to cocktail.name, "/#{cocktail.id}" %></h2>
+      <%= link_to '', "/#{cocktail.id}", class: "fas fa-trash", method: :delete %>
+
+      <div class="ingredients">
+        <% cocktail.ingredients.each do |ingredient| %>
+
+          <p><%= ingredient.name %></p>
+
+        <% end %>
+      </div>
+    </div>
+
+
+  <% end %>
+
+</div>
