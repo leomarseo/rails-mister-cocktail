@@ -20,7 +20,7 @@ class DosesController < ApplicationController
   end
 
   def destroy
-    Dose.find(params[:dose_id]).delete
+    Dose.find(params[:dose_id]).destroy
     redirect_to "/#{params[:id]}"
   end
 end
