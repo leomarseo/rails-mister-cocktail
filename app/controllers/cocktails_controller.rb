@@ -19,4 +19,8 @@ class CocktailsController < ApplicationController
     cocktail.delete
     redirect_to root_path
   end
+
+  def search_index
+    @cocktails = Cocktail.where('name LIKE ?', '%' + params['cocktail'].downcase.capitalize + '%')
+  end
 end

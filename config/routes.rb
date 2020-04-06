@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get '/new', to: 'cocktails#new'
   post '/', to: 'cocktails#create'
+  post '/query', to: 'cocktails#search_index'
   delete '/:id', to: 'cocktails#destroy'
 
   get '/:id', to: 'doses#index'
