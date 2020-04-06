@@ -7,6 +7,10 @@ class CocktailsController < ApplicationController
     @cocktail = Cocktail.new
   end
 
+  def show
+    @cocktail = Cocktail.find(params[:id])
+  end
+
   def create
     cocktail = Cocktail.create!(name: params['cocktail'])
     ingredient = Ingredient.where(name: params['ingredient']).first

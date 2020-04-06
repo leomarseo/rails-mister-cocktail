@@ -1,0 +1,26 @@
+<h1><%= @cocktail.name %></h1>
+
+<% @cocktail.doses.each do |dose| %>
+
+  <h3><%= dose.ingredient.name %><span> - <%= dose.description %></span></h3>
+  <%= link_to '', "/#{dose.cocktail.id}/#{dose.id}", class: "fas fa-trash", method: :delete %>
+  <%= link_to '', "/#{dose.cocktail.id}/#{dose.id}", class: "far fa-edit"%>
+
+<% end %>
+
+<form method="post" action=<% "/#{@cocktail.id}" %>>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Gin</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="ingredient">
+      <% Ingredient.all.each do |ingredient| %>
+        <option><%= ingredient.name %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Dose</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="description"></textarea>
+  </div>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <button type="submit" class="btn btn-primary">Add ingredient</button>
+</form>
