@@ -21,7 +21,9 @@
 @media (max-width: 560px) {
   .cocktail-cards-container {
     width: 400px;
+    margin-left: 0px;
   }
+
 }
 
 
@@ -36,9 +38,6 @@
   flex-direction: column;
   align-items: center;
   margin: 10px;
-}
-
-.cocktail-card:hover {
 }
 
 .cocktail-card h2 {
@@ -121,7 +120,7 @@
   flex-direction: column;
   align-items: center;
   margin: 0 0;
-  margin-left: 100px;
+  margin-left: 20px;
 }
 
 .cocktail-card-show h2 {
@@ -204,6 +203,22 @@
   margin-left: 40px;
   border-radius: 16px;
   padding: 16px;
+}
+
+@media (max-width: 560px) {
+  .show-container {
+    margin: 150px auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cocktail-card-show {
+    width: 95%;
+  }
+
+  .show-sub-container {
+    margin: 20px auto;
+  }
 }
 
 .add-ingredient-button {
