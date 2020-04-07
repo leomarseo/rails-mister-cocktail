@@ -1,5 +1,5 @@
 <div class="show-container">
-  <div class="cocktail-card-show" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('<%= cl_image_path @image_path, height: 600, width: 400, crop: :fill %>')">
+  <div class="cocktail-card-show" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('<%= cl_image_path @cocktail.photo.key, height: 600, width: 400, crop: :fill %>')">
     <h2><%= @cocktail.name %></h2>
     <div class="ingredients-card-show">
       <% @cocktail.doses.each do |dose| %>
