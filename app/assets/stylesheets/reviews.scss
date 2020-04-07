@@ -1,0 +1,65 @@
+// Place all the styles related to the reviews controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.review-super-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.review-cards-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px;
+  flex-wrap: nowrap;
+  overflow-y: auto;
+  height: 250px;
+
+}
+
+.review-card {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px;
+
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rating-icons {
+}
+
+
+.review-form {
+  width: 100%;
+  padding: 16px;
+}
+
+
+.add-review-button {
+  color: crimson;
+  border: 1px solid crimson;
+  border-radius: 24px;
+  padding: 14px;
+  transition: 0.6s;
+  margin: 8px auto;
+}
+
+.add-review-button:hover {
+  color: white;
+  background-color: crimson;
+
+}
+
+.add-review-button a:hover {
+  text-decoration: none;
+  color: inherit;
+}

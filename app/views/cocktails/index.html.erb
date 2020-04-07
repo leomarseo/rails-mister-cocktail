@@ -1,10 +1,11 @@
-<h1>Cocktails</h1>
 
-<div class="cocktail-card-container">
+
+<div class="cocktail-cards-container">
   <% @cocktails.each do |cocktail| %>
-    <div class="cocktail-card">
-      <h2><%= link_to cocktail.name, "/#{cocktail.id}" %></h2>
-      <%= link_to '', "/#{cocktail.id}", class: "fas fa-trash", method: :delete %>
+    <% image_path = cocktail.photo.attached? ? cocktail.photo.key : '9sjd4of0nlfsjoapd3ar05iceu8i' %>
+    <div class="cocktail-card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('<%= cl_image_path image_path, height: 400, width: 350, crop: :fill %>')">
+      <%= link_to '', cocktail_path(cocktail), class: "fas fa-trash", id: "index-trash", method: :delete %>
+      <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
 
       <div class="ingredients">
         <% cocktail.ingredients.each do |ingredient| %>

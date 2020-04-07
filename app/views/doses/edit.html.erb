@@ -1,24 +1,81 @@
-<h1><%= @dose.cocktail.name %></h1>
+<% image_path = @cocktail.photo.attached? ? @cocktail.photo.key : '9sjd4of0nlfsjoapd3ar05iceu8i' %>
 
-<% @dose.cocktail.doses.each do |dose| %>
+<div class="show-container">
 
-  <h3><%= dose.ingredient.name %><span> - <%= dose.description %></span></h3>
-  <%= link_to '', "/#{dose.cocktail.id}/#{dose.id}", class: "fas fa-trash", method: :delete %>
-  <%= link_to '', "/#{dose.cocktail.id}/#{dose.id}", class: "far fa-edit"%>
+  <div class="cocktail-card-show" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('<%= cl_image_path image_path, height: 600, width: 400, crop: :fill %>')">
 
-<% end %>
+    <h2><%= @cocktail.name %></h2>
 
-<form method="post" action=<% "/#{@dose.cocktail.id}" %>>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Gin</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="ingredient">
-        <option><%= @dose.ingredient.name %></option>
-    </select>
+    <div class="ingredients-card-show">
+      <% @cocktail.doses.each do |dose| %>
+        <div class="ingredient-info-show">
+          <div class="ingredient-text">
+            <p><%= dose.ingredient.name %>
+            <span> - <%= dose.description %></span></p>
+          </div>
+          <div class="ingredient-icons">
+            <%= link_to '', cocktail_dose_path(dose.cocktail, dose), class: "fas fa-trash", method: :delete %>
+            <%= link_to '', edit_cocktail_dose_path(dose.cocktail, dose), class: "far fa-edit" %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Dose</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="description"><%= @dose.description %></textarea>
+
+  <div class="show-sub-container">
+    <div class="dose-form">
+      <%= simple_form_for [ @cocktail, @dose ], url: cocktail_dose_path(@cocktail.id, @dose.id), html: { autocomplete: "off" }, method: 'PATCH' do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+        <div class="form-inputs">
+          <%= f.association :ingredient %>
+          <%= f.input :description %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Update ingredient", class: "add-ingredient-button" %>
+        </div>
+      <% end %>
+    </div>
+    <hr>
+
+    <div class="review-super-container">
+      <div class="review-cards-container">
+        <% @cocktail.reviews.each do |review| %>
+          <div class="review-card">
+            <div class="review-header">
+              <p><%= review.content %></p>
+              <div class="review-action-icons">
+                <%= link_to '', cocktail_review_path(review.cocktail, review), class: "fas fa-trash", method: :delete %>
+                <%= link_to '', edit_cocktail_review_path(review.cocktail, review), class: "far fa-edit" %>
+              </div>
+            </div>
+            <div class="rating-icons">
+              <% review.rating.times do %>
+              <i class="fas fa-cocktail"></i>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+        <% end %>
+      </div>
+
+      <div class="review-form">
+        <%= simple_form_for [ @cocktail, @review ], url: cocktail_reviews_path(@cocktail.id), html: { autocomplete: "off" }, method: 'POST' do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+          <div class="form-inputs">
+            <%= f.input :content %>
+            <%= f.input :rating, collection: 0..5 %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Add review", class: "add-ingredient-button" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <button type="submit" class="btn btn-primary">Update ingredient</button>
-</form>
+</div>

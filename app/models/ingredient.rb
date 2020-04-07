@@ -3,4 +3,6 @@ class Ingredient < ApplicationRecord
   has_many :doses
   validates_presence_of :name
   validates :name, uniqueness: { case_sensitive: false }
+
+  default_scope { order(name: :asc) }
 end

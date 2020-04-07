@@ -1,6 +1,11 @@
+<% image_path = @cocktail.photo.attached? ? @cocktail.photo.key : '9sjd4of0nlfsjoapd3ar05iceu8i' %>
+
 <div class="show-container">
-  <div class="cocktail-card-show" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('<%= cl_image_path @image_path, height: 600, width: 400, crop: :fill %>')">
+
+  <div class="cocktail-card-show" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('<%= cl_image_path image_path, height: 600, width: 400, crop: :fill %>')">
+
     <h2><%= @cocktail.name %></h2>
+
     <div class="ingredients-card-show">
       <% @cocktail.doses.each do |dose| %>
         <div class="ingredient-info-show">
@@ -57,7 +62,7 @@
       </div>
 
       <div class="review-form">
-        <%= simple_form_for [ @cocktail, @review ], url: cocktail_reviews_path(@cocktail.id), html: { autocomplete: "off" }, method: 'POST' do |f| %>
+        <%= simple_form_for [ @cocktail, @review ], url: cocktail_review_path(@cocktail.id, @review.id), html: { autocomplete: "off" }, method: 'PATCH' do |f| %>
           <%= f.error_notification %>
           <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -67,7 +72,7 @@
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Add review", class: "add-review-button" %>
+            <%= f.button :submit, "Update review", class: "add-ingredient-button" %>
           </div>
         <% end %>
       </div>
