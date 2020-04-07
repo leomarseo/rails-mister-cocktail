@@ -5,4 +5,5 @@ This is the first app I deployed using [Heroku](https://dashboard.heroku.com/app
 [Enjoy!](https://marseo-mr-cocktail.herokuapp.com/)
 
 The [search bar](https://codepen.io/AlbertFeynman/pen/BPvzWZ) is borrowed from Jove Angelevski
+
 ![](preview.gif)
