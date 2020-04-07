@@ -15,7 +15,7 @@ class CocktailsController < ApplicationController
     @cocktail = Cocktail.find(params[:id])
     @dose = Dose.new(cocktail: @cocktail)
     @review = Review.new(cocktail: @cocktail)
-    # @image_path = @cocktail.photo.attached? ? @cocktail.photo.key : 'z0hmday7p2mignrmd1iisi2dqp0c'
+    @image_path = @cocktail.photo.attached? ? @cocktail.photo.key : 'z0hmday7p2mignrmd1iisi2dqp0c'
   end
 
   def create
